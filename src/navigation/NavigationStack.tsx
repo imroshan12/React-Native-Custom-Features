@@ -13,6 +13,7 @@ import { FlatList, TouchableOpacity } from 'react-native'
 import CarouselScreen from '../screens/CarouselScreen'
 import AnimationsScreen from '../screens/AnimationsScreen'
 import BottomSheetScreen from '../screens/BottomSheets/BottomSheetScreen'
+import SwipeAnimation from '../screens/SwipeAnimation'
 
 const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator()
@@ -23,6 +24,7 @@ const drawerItems = [
   { key: 'Carausel', label: 'Carousel', screen: 'CarouselScreen' },
   { key: 'Animations', label: 'Animations', screen: 'AnimationsScreen' },
   { key: 'BottomSheets', label: 'Bottom Sheets', screen: 'BottomSheetsScreen' },
+  { key: 'SwipeAnimation', label: 'Swipe Animation', screen: 'SwipeAnimation' },
 ]
 
 const CustomDrawerContent = () => {
@@ -96,6 +98,7 @@ const HomeStackNavigator = () => (
     <Stack.Screen name="CarouselScreen" component={CarouselScreen} />
     <Stack.Screen name="AnimationsScreen" component={AnimationsScreen} />
     <Stack.Screen name="BottomSheetsScreen" component={BottomSheetScreen} />
+    <Stack.Screen name="SwipeAnimation" component={SwipeAnimation} />
   </Stack.Navigator>
 )
 
