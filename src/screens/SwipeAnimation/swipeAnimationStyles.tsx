@@ -7,9 +7,11 @@ export const getSwipeAnimationStyles = () => {
     },
     root: {
       flex: 1,
+      backgroundColor: '#687FE5',
     },
     cardStyle: {
       alignItems: 'center',
+      backgroundColor: '#FFEDF3',
     },
     cardTitle: {
       textTransform: 'uppercase',
@@ -24,6 +26,23 @@ export const getSwipeAnimationStyles = () => {
       width: '100%',
       height: 200,
       borderRadius: 12,
+    },
+    button: {
+      backgroundColor: '#687FE5',
+      paddingVertical: 12,
+      paddingHorizontal: 24,
+      borderRadius: 24,
+      marginVertical: 12,
+      borderWidth: 1,
+      borderColor: '#FFEDF3',
+      width: '60%',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    buttonText: {
+      color: '#FFF',
+      fontWeight: '600',
+      textTransform: 'uppercase',
     },
   })
 }
