@@ -2,18 +2,18 @@ import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Text, View, StyleSheet } from 'react-native'
-import ProfileScreen from '../screens/ProfileScreen'
-import HomeScreen from '../screens/HomeScreen'
+import ProfileScreen from '../features/ProfileScreen'
+import HomeScreen from '../features/HomeScreen'
 import {
   useNavigation,
   DrawerActions,
   useNavigationState,
 } from '@react-navigation/native'
 import { FlatList, TouchableOpacity } from 'react-native'
-import CarouselScreen from '../screens/CarouselScreen'
-import AnimationsScreen from '../screens/AnimationsScreen'
-import BottomSheetScreen from '../screens/BottomSheets/BottomSheetScreen'
-import SwipeAnimation from '../screens/SwipeAnimation'
+import CarouselScreen from '../features/CarouselScreen'
+import AnimationsScreen from '../features/AnimationsScreen'
+import BottomSheetScreen from '../features/BottomSheets/BottomSheetScreen'
+import SwipeAnimation from '../features/SwipeAnimation'
 
 const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator()
