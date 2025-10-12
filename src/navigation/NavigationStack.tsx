@@ -14,6 +14,7 @@ import CarouselScreen from '../features/CarouselScreen'
 import AnimationsScreen from '../features/AnimationsScreen'
 import BottomSheetScreen from '../features/BottomSheets/BottomSheetScreen'
 import SwipeAnimation from '../features/SwipeAnimation'
+import { FloatingButton } from '../features/FloatingButton'
 
 const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator()
@@ -25,6 +26,7 @@ const drawerItems = [
   { key: 'Animations', label: 'Animations', screen: 'AnimationsScreen' },
   { key: 'BottomSheets', label: 'Bottom Sheets', screen: 'BottomSheetsScreen' },
   { key: 'SwipeAnimation', label: 'Swipe Animation', screen: 'SwipeAnimation' },
+  { key: 'FloatingButton', label: 'Floating Button', screen: 'FloatingButton' },
 ]
 
 const CustomDrawerContent = () => {
@@ -99,6 +101,7 @@ const HomeStackNavigator = () => (
     <Stack.Screen name="AnimationsScreen" component={AnimationsScreen} />
     <Stack.Screen name="BottomSheetsScreen" component={BottomSheetScreen} />
     <Stack.Screen name="SwipeAnimation" component={SwipeAnimation} />
+    <Stack.Screen name="FloatingButton" component={FloatingButton} />
   </Stack.Navigator>
 )
 
