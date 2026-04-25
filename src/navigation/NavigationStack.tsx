@@ -1,13 +1,15 @@
 import React from 'react'
-import { createDrawerNavigator } from '@react-navigation/drawer'
+import {
+  createDrawerNavigator,
+  DrawerContentComponentProps,
+} from '@react-navigation/drawer'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Text, View, StyleSheet } from 'react-native'
 import ProfileScreen from '../features/ProfileScreen'
 import HomeScreen from '../features/HomeScreen'
 import {
-  useNavigation,
   DrawerActions,
-  useNavigationState,
+  getFocusedRouteNameFromRoute,
 } from '@react-navigation/native'
 import { FlatList, TouchableOpacity } from 'react-native'
 import CarouselScreen from '../features/CarouselScreen'
@@ -15,6 +17,23 @@ import AnimationsScreen from '../features/AnimationsScreen'
 import BottomSheetScreen from '../features/BottomSheets/BottomSheetScreen'
 import SwipeAnimation from '../features/SwipeAnimation'
 import { FloatingButton } from '../features/FloatingButton'
+
+export const linking = {
+  prefixes: ['appcustom://', 'https://appcustom.com'],
+  config: {
+    initialRouteName: 'DrawerNavigator',
+    screens: {
+      DrawerNavigator: {
+        initialRouteName: 'Home',
+        screens: {
+          Home: '',
+          CarouselScreen: 'carousel',
+          FloatingButton: 'floating',
+        },
+      },
+    },
+  },
+}
 
 const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator()
@@ -29,28 +48,13 @@ const drawerItems = [
   { key: 'FloatingButton', label: 'Floating Button', screen: 'FloatingButton' },
 ]
 
-const CustomDrawerContent = () => {
-  const navigation = useNavigation()
-  // Get the current route name from navigation state
-  const state = useNavigationState(state => state)
-  let currentRoute = 'Home'
-  if (state && state.routes && state.routes.length > 0) {
-    const drawerRoute = state.routes[state.index]
-    // Check for nested stack navigation
-    if (
-      drawerRoute.state &&
-      drawerRoute.state.index !== undefined &&
-      drawerRoute.state.routes
-    ) {
-      const stackRoute = drawerRoute.state.routes[drawerRoute.state.index]
-      currentRoute = stackRoute.name || 'Home'
-    } else if (drawerRoute.name === 'DrawerNavigator') {
-      // If DrawerNavigator is focused but no nested state, default to Home
-      currentRoute = 'Home'
-    } else {
-      currentRoute = drawerRoute.name
-    }
-  }
+const CustomDrawerContent = (props: DrawerContentComponentProps) => {
+  const { state, navigation } = props
+
+  // Safe route extraction using React Navigation's helper
+  const focusedDrawerRoute = state.routes[state.index]
+  const currentRoute =
+    getFocusedRouteNameFromRoute(focusedDrawerRoute) ?? 'Home'
 
   const handlePress = (item: (typeof drawerItems)[0]) => {
     navigation.navigate(item.screen as never)
@@ -111,7 +115,8 @@ const NavigationStack = () => (
       headerShown: false,
       drawerType: 'slide',
     }}
-    drawerContent={CustomDrawerContent}>
+    drawerContent={CustomDrawerContent}
+    initialRouteName="DrawerNavigator">
     <Drawer.Screen name="DrawerNavigator" component={HomeStackNavigator} />
   </Drawer.Navigator>
 )
